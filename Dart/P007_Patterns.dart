@@ -50,13 +50,15 @@ void main(List<String> args) {
   }
 
     print('');
-
+  int counter = 15;
   for(int i=1;i<=5;i++){
     for(int s = 1;s<=i-1;s++){
       stdout.write(' ');
     }
     for(int j=5;j>=i;j--){
-      stdout.write('* ');
+      // stdout.write('* ');
+      stdout.write('$counter ');
+      counter--;
     }
     print('');
   }
