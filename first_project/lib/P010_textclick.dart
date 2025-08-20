@@ -33,9 +33,9 @@ class MyTextClick extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                print('clicked on user');
+                print('user data clicked');
               },
-              child: Text('Hello user', style: TextStyle(fontSize: 30)),
+              child: Text('user data', style: TextStyle(fontSize: 30)),
             ),
             GestureDetector(
               onTap: () {

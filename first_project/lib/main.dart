@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'P001_text.dart';
 import 'P002_cener_container.dart';
 import 'P004_image.dart';
@@ -9,6 +8,8 @@ import 'P007_decoration.dart';
 import 'P008_card.dart';
 import 'P009_stack.dart';
 import 'P010_textclick.dart';
+import 'P011_datetime.dart';
+import 'P012_splashscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyTextClick(),
+      home: SplashScreeen(),
       // home: Scaffold(
       //   appBar: AppBar(
       //     title: Text('MyApp'),
