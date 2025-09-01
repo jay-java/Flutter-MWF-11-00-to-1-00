@@ -4,6 +4,8 @@ import 'package:first_project/P013_screen2.dart';
 import 'package:flutter/material.dart';
 
 import 'P014_bottomnavigation.dart';
+import 'P015_navigation_drawer.dart';
+import 'P016_tabbar.dart';
 
 class SplashScreeen extends StatefulWidget {
   const SplashScreeen({super.key});
@@ -20,7 +22,7 @@ class _SplashScreeenState extends State<SplashScreeen> {
     Timer(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MyBottomNavigationBar()),
+        MaterialPageRoute(builder: (context) => MyTabBar()),
       );
     });
   }
