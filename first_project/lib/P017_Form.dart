@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 class MyFrom extends StatefulWidget {
-
   const MyFrom({super.key});
 
   @override
   State<MyFrom> createState() => _MyFromState();
 }
+
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+
 class _MyFromState extends State<MyFrom> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -17,7 +18,8 @@ class _MyFromState extends State<MyFrom> {
   String _email = '';
 
   String dropdownValue = list.first;
-
+  String _gender = '';
+  String _groupValue = 'gender';
 
   @override
   Widget build(BuildContext context) {
@@ -65,31 +67,70 @@ class _MyFromState extends State<MyFrom> {
                     },
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: const Icon(Icons.arrow_downward),
-                    elevation: 16,
-                    style: const TextStyle(color: Colors.blue),
-                    underline: Container(height: 2, color: Colors.blue),
-                    onChanged: (String? value) {
-                      // This is called when the user selects an item.
-                      setState(() {
-                        dropdownValue = value!;
-                      });
-                    },
-                    items: list.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(value: value, child: Text(value));
-                    }).toList(),
-                  )
-                ),
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      icon: const Icon(Icons.arrow_downward),
+                      borderRadius: BorderRadius.circular(10),
 
+                      elevation: 16,
+                      style: const TextStyle(color: Colors.blue),
+                      underline: Container(height: 2, color: Colors.blue),
+                      onChanged: (String? value) {
+                        // This is called when the user selects an item.
+                        setState(() {
+                          if (value != null || value!.isNotEmpty) {
+                            dropdownValue = value;
+                          }
+                          else{
+                            print('select value ');
+                          }
+                        });
+                      },
+                      items:
+                          list.map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Radio(
+                      value: 'male',
+                      groupValue: _groupValue,
+                      onChanged: (value) {
+                        _gender = value!;
+                        print(_gender);
+                      },
+                    ),
+                    Text('Male', style: TextStyle(fontSize: 20)),
+                    Radio(
+                      value: 'female',
+                      groupValue: _groupValue,
+                      onChanged: (value) {
+                        _gender = value!;
+                        print(_gender);
+                      },
+                    ),
+                    Text('Female', style: TextStyle(fontSize: 20)),
+                  ],
+                ),
                 SizedBox(height: 20),
                 Container(
                   height: 50,
                   width: double.infinity,
-                  margin: EdgeInsets.only(left: 50,right: 50),
+                  margin: EdgeInsets.only(left: 50, right: 50),
                   child: TextButton(
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty<Color>.fromMap(
@@ -111,6 +152,7 @@ class _MyFromState extends State<MyFrom> {
                     ),
                   ),
                 ),
+
                 SizedBox(height: 20),
                 Text('Name : $_name', style: TextStyle(fontSize: 20)),
                 SizedBox(height: 20),
