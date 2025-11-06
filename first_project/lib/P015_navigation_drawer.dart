@@ -18,7 +18,10 @@ class _MyNavigationDrawerState extends State<MyNavigationDrawer> {
       ),
       body: Center(child: Text('MyApp', style: TextStyle(fontSize: 50))),
       drawer: Drawer(
-        child: Column(children: [drawerHeader(context), drawerItems(context)]),
+        child: Column(
+            children: [
+              drawerHeader(context),
+              drawerItems(context)]),
       ),
     );
   }

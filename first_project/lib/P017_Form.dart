@@ -35,6 +35,7 @@ class _MyFromState extends State<MyFrom> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     controller: _nameController,
+                    keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       label: Text('enter name'),
                       border: OutlineInputBorder(
@@ -53,6 +54,8 @@ class _MyFromState extends State<MyFrom> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     controller: _emailController,
+                    obscureText: true,
+                    obscuringCharacter: '@',
                     decoration: InputDecoration(
                       label: Text('enter email'),
                       border: OutlineInputBorder(

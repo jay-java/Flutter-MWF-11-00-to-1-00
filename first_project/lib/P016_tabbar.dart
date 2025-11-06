@@ -22,6 +22,7 @@ class _MyTabBarState extends State<MyTabBar> {
             TabBar(
               tabs: [
                 Tab(
+                  child: Text('Home'),
                   icon: Icon(Icons.home,color: Colors.blue,),
                 ),
                 Tab(
