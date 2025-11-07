@@ -39,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Container(
               height: 300,
               alignment: Alignment.center,
-              // child: LottieBuilder.asset('assets/login.json'),
+              child: LottieBuilder.asset('assets/login.json'),
             ),
             SizedBox(height: 20),
             Container(

@@ -3,6 +3,9 @@ import 'package:flutter_fire_pro/views/signupscreen.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'forgotpasswordScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'homeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,6 +15,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +35,13 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               height: 300,
               alignment: Alignment.center,
-              // child: Lottie.asset("assets/securelogin.json"),
+              child: Lottie.asset("assets/securelogin.json"),
             ),
             SizedBox(height: 40),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 50),
               child: TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   hintText: 'Enter email',
                   suffixIcon: Icon(Icons.email),
@@ -46,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 50),
               child: TextFormField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   hintText: 'Enter password',
                   enabledBorder: OutlineInputBorder(),
@@ -58,7 +67,26 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 50,
               width: 100,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  var email = emailController.text.trim();
+                  var password = passwordController.text.trim();
+                  try {
+                    final User? firebaseUser = (await
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                        email: email, password: password)
+                    ).user;
+
+                    if(firebaseUser != null){
+                      Get.to(()=> Homescreen());
+                    }
+                    else{
+                      print('email or pass is incorrect');
+                    }
+                  } on FirebaseAuthException catch (e) {
+                    print('error msg : $e');
+                  }
+                },
                 child: Text(
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 20),
@@ -70,8 +98,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: 20),
             GestureDetector(
-              onTap: (){
-                Get.to(()=> ForgotPasswordScreen());
+              onTap: () {
+                Get.to(() => ForgotPasswordScreen());
               },
               child: Container(
                 child: Card(
@@ -84,8 +112,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: 20),
             GestureDetector(
-              onTap: (){
-                Get.to(()=> SignUpScreen());
+              onTap: () {
+                Get.to(() => SignUpScreen());
               },
               child: Container(
                 child: Card(
