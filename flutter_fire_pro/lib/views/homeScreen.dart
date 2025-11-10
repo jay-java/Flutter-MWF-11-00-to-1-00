@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fire_pro/views/addNoteScreen.dart';
 import 'package:flutter_fire_pro/views/loginscreen.dart';
 import 'package:get/get.dart';
 
@@ -47,6 +48,12 @@ class _HomescreenState extends State<Homescreen> {
             child: Icon(Icons.logout),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(()=> Addnotescreen());
+        },
+        child: Icon(Icons.add),
       ),
     );
   }

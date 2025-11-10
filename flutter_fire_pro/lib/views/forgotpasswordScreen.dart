@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fire_pro/views/loginscreen.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -9,6 +12,9 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+
+  TextEditingController forgotPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +36,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 50),
               child: TextFormField(
+                controller: forgotPasswordController,
                 decoration: InputDecoration(
                   hintText: 'Enter email',
                   prefixIcon: Icon(Icons.email),
@@ -44,7 +51,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               height: 50,
               width: 250,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  var newEmail = forgotPasswordController.text.trim();
+                  try{
+                    FirebaseAuth.instance.sendPasswordResetEmail(email: newEmail)
+                    .then((value) => {
+                      Get.off(LoginScreen())
+                    });
+                    ;
+                  } on FirebaseAuthException catch(e){
+                    print('error msg : $e');
+                  }
+                },
                 child: Text(
                   'Forgot Password',
                   style: TextStyle(color: Colors.white, fontSize: 20),

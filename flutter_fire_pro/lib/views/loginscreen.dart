@@ -76,7 +76,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         .signInWithEmailAndPassword(
                         email: email, password: password)
                     ).user;
-
                     if(firebaseUser != null){
                       Get.to(()=> Homescreen());
                     }
